@@ -1,0 +1,64 @@
+.outer-box {
+    width: 400px;
+    display: block;
+    margin-right: auto;
+    margin-left: auto;
+    margin-top: 100px;
+    background-color: #AAAAAA;
+}
+
+.entireScreen {
+    background-color: #EEEEEE;
+    height: 120px;
+}
+
+#screen {
+    font-size: 2em;
+}
+.clear {
+    background-color: #FFAAAA;
+}
+
+.clear:hover {
+    opacity: 0.5;
+}
+
+.clear:active {
+    opacity: 0.4;
+}
+
+.delete {
+    background-color: #AAAAFF;
+}
+
+.delete:hover {
+    opacity: 0.5;
+}
+
+.delete:active {
+    opacity: 0.4;
+}
+
+.button {
+    background-color: #EEEEEE;
+}
+
+button:hover {
+    opacity: 0.5;
+}
+
+button:active {
+    opacity: 0.4;
+}
+
+button {
+    width: 100%;
+}
+
+.container {
+    padding: 0;
+}
+
+/* .row {
+    height: 100px;
+} */
