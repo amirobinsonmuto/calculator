@@ -24,9 +24,9 @@ operators.forEach((operator) => {
         //if num1 is empty, convert input string to an integer and store it in num 1
         //if num1 has a value, convert input string to and integer and store it in num2 and execute calculation
         if(num1 === null){
-            num1 = parseInt(input); 
+            num1 = parseFloat(input); 
         } else {                      
-            num2 = parseInt(input);
+            num2 = parseFloat(input);
             calculation(num1, num2);
         }
 
