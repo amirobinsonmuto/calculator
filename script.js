@@ -1,66 +1,102 @@
-//declare valuables
-let screenValue = "";
-let screenValue2 = "";
-let screenDisplay = document.getElementById("screen");
-let screenDisplay2 = document.getElementById("screen2");
-let firstNum = 0;
-let operatorValue = ""
+//declare global variables
+let num1 = null;
+let num2 = null;
+let input = ""
+let operatorId =""
+const display = document.getElementById("display");
 
-//add event listner to buttons 
+//add event listener to number buttons and store the value in input
 const numberButtons = document.querySelectorAll(".numberButton");
 
 numberButtons.forEach((numberButton) => {
     numberButton.addEventListener('click', ()=>{
-        screenValue += numberButton.value;
-        screenDisplay.textContent = screenValue;
+        input += numberButton.value;
+        display.textContent = input;
     })
 })
 
-//declare valuable for operators and store value when an operator is clicked
+//operator functions
 const operators = document.querySelectorAll(".operator");
 
 operators.forEach((operator) => {
     operator.addEventListener('click', ()=>{
-        firstNum = parseInt(screenValue); //store the current screenValue to a variable "firstNum"
-        screenValue2 = screenValue + operator.value;
-        screenDisplay2.textContent = screenValue2; //screen2 will display the current value and an operator
-        screenValue = ""; //reset the screenValue
-        screenDisplay.textContent = screenValue; //reset the screenDisplay
-        operatorValue = operator.id; //store the operator value to an variable
-    })
-})
 
-//= function
+        //if num1 is empty, convert input string to an integer and store it in num 1
+        //if num1 has a value, convert input string to and integer and store it in num2 and execute calculation
+        if(num1 === null){
+            num1 = parseInt(input); 
+        } else {                      
+            num2 = parseInt(input);
+            calculation(num1, num2);
+        }
+
+        //store the operation id in the operatorId variable for the next calculation
+        operatorId = operator.id; 
+
+        //clear input
+        input = ""
+
+        //display
+        display.textContent = num1; 
+
+        console.log(`num1 ${num1}`);
+        console.log(`input ${input}`)
+        console.log(`num2 ${num2}`);
+        console.log(`operatorId ${operatorId}`);
+    })
+ })
+
+
+// equal function
 const equal = document.getElementById("equal");
 
 equal.addEventListener('click', ()=>{
-    screenDisplay2.textContent = screenValue2 + screenValue + "=";
-    screenValue = operate();
-    screenDisplay.textContent = screenValue;
-})
 
-function operate() {
-    if (operatorValue === "dividedBy") {
-        return firstNum / parseInt(screenValue);
-    } else if (operatorValue === "times") {
-        return firstNum * parseInt(screenValue);
-    } else if (operatorValue === "add") {
-        return firstNum + parseInt(screenValue);
-    } else {
-        return firstNum - parseInt(screenValue);
-    }
-}
+    //store input in num2. It's always num2
+    num2 = parseInt(input);
+
+    //perform calculation
+    calculation(num1, num2);
+
+    //store num1 in input so that a subsequent calculation will have an input value
+    input = num1;
+
+    //display
+    display.textContent = num1;
+
+    //reset num1 and num2;
+    num1 = null;
+    num2 = null;
+
+    console.log(`num1 ${num1}`);
+    console.log(`input ${input}`)
+    console.log(`num2 ${num2}`);
+    console.log(`operatorId ${operatorId}`);
+})
 
 //clear function
 const clear = document.getElementById("clear");
 
 clear.addEventListener('click', ()=>{
-    clearValue();
+    num1 = null;
+    num2 = null;
+    input = "";
+    display.textContent = ""
 })
 
-function clearValue() {
-    screenValue = "";
-    screenDisplay.textContent = screenValue;
-    screenValue2 = "";
-    screenDisplay2.textContent = screenValue2;
+//calculation function
+function calculation(a, b) {
+
+    //perform calculation
+    if (operatorId === "division") {
+        num1 = a / b;
+    } else if (operatorId === "multiplication") {
+        num1 = a * b;
+    } else if (operatorId === "addition") {
+        num1 = a + b;
+    } else {
+        num1 = a - b;
+    }
 }
+
+

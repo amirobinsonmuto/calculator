@@ -7,12 +7,12 @@
     background-color: #AAAAAA;
 }
 
-.entireScreen {
+.entireDisplay {
     background-color: #EEEEEE;
     height: 120px;
 }
 
-#screen {
+#display {
     font-size: 2em;
 }
 .clear {
